@@ -1,11 +1,14 @@
 console.log('TP-1');
 
-const fs = require('fs');
+const fs = require('fs').promises;
 
 console.time();
-[0, 1, 2]
+Promise.all([0, 1, 2]
   .map(index => './characters-' + index + '.json')
-  .map(filePath => fs.readFileSync(filePath, 'utf-8'))
-  .map(fileContent => JSON.parse(fileContent))
-  .forEach(data => console.log(data));
-console.timeEnd();
+  .map(filePath => fs.readFile(filePath, 'utf-8')))
+  .then(fileContents => {
+    fileContents
+      .map(fileContent => JSON.parse(fileContent))
+      .forEach(data => console.log(data))
+    console.timeEnd();
+  });
