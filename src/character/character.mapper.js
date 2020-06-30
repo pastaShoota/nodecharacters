@@ -1,8 +1,9 @@
+const moment = require('moment');
 const Character = require('./character.dto');
 
 module.exports = {
   entityToDto: entity => {
-    const age = (new Date().valueOf() - new Date(entity.birthDate).valueOf()) / (1000 * 60 * 60 * 24 * 365);
+    const age = moment().diff(moment(entity.birthDate), 'year');
     return new Character(entity.firstName, entity.lastName, age);
   }
 };
