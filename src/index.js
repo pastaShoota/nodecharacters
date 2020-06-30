@@ -1,12 +1,8 @@
 console.log('TP-2');
 
-const fs = require('fs').promises;
+const characterRepository = require('./character/character.repository');
+const characterMapper = require('./character/character.mapper');
 
-Promise.all([0, 1]
-  .map(index => './src/assets/characters-' + index + '.json')
-  .map(filePath => fs.readFile(filePath, 'utf-8')))
-  .then(fileContents => {
-    fileContents
-      .map(fileContent => JSON.parse(fileContent))
-      .forEach(data => console.log(data))
-  });
+characterRepository.find()
+  .then(characters => characters.map(character => characterMapper.entityToDto(character)))
+  .then(characters => characters.forEach(data => console.log(data)));
