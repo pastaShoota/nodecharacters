@@ -1,0 +1,52 @@
+[
+  {
+    "firstName": "Harry",
+    "lastName": "Potter",
+    "age": 39
+  },
+  {
+    "firstName": "Hermione",
+    "lastName": "Granger",
+    "age": 40
+  },
+  {
+    "firstName": "Ronald",
+    "lastName": "Weasley",
+    "age": 40
+  },
+  {
+    "firstName": "Drago",
+    "lastName": "Malefoy",
+    "age": 40
+  },
+  {
+    "firstName": "Ginny",
+    "lastName": "Weasley",
+    "age": 38
+  },
+  {
+    "firstName": "Neville",
+    "lastName": "Londubat",
+    "age": 39
+  },
+  {
+    "firstName": "Luna",
+    "lastName": "Lovegood",
+    "age": 39
+  },
+  {
+    "firstName": "Albus",
+    "lastName": "Dumbledore",
+    "age": 138
+  },
+  {
+    "firstName": "Rubeus",
+    "lastName": "Hagrid",
+    "age": 91
+  },
+  {
+    "firstName": "Severus",
+    "lastName": "Rogue",
+    "age": 60
+  }
+]
