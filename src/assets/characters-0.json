@@ -1,0 +1,62 @@
+[
+  {
+    "id": "5ef2ad3699f7e60ce4a49da7",
+    "firstName": "Harry",
+    "lastName": "Potter",
+    "birthDate": "1980-07-31T10:00:00+00:00"
+  },
+  {
+    "id": "5ef2adb499f7e60ce4a49da9",
+    "firstName": "Hermione",
+    "lastName": "Granger",
+    "birthDate": "1979-09-19T10:00:00+00:00"
+  },
+  {
+    "id": "5ef2adc799f7e60ce4a49daa",
+    "firstName": "Ronald",
+    "lastName": "Weasley",
+    "birthDate": "1980-03-01T10:00:00+00:00"
+  },
+  {
+    "id": "5ef2ae1299f7e60ce4a49dab",
+    "firstName": "Drago",
+    "lastName": "Malefoy",
+    "birthDate": "1980-06-05T10:00:00+00:00"
+  },
+  {
+    "id": "5ef2ae2699f7e60ce4a49dac",
+    "firstName": "Ginny",
+    "lastName": "Weasley",
+    "birthDate": "1981-08-11T10:00:00+00:00"
+  },
+  {
+    "id": "5ef2ae3e99f7e60ce4a49dad",
+    "firstName": "Neville",
+    "lastName": "Londubat",
+    "birthDate": "1980-07-30T10:00:00+00:00"
+  },
+  {
+    "id": "5ef2ae6499f7e60ce4a49dae",
+    "firstName": "Luna",
+    "lastName": "Lovegood",
+    "birthDate": "1981-02-13T10:00:00+00:00"
+  },
+  {
+    "id": "5ef2affb99f7e60ce4a49db6",
+    "firstName": "Albus",
+    "lastName": "Dumbledore",
+    "birthDate": "1881-07-01T10:00:00+00:00"
+  },
+  {
+    "id": "5ef2b01799f7e60ce4a49db7",
+    "firstName": "Rubeus",
+    "lastName": "Hagrid",
+    "birthDate": "1928-12-06T10:00:00+00:00"
+  },
+  {
+    "id": "5ef2b03399f7e60ce4a49db8",
+    "firstName": "Severus",
+    "lastName": "Rogue",
+    "birthDate": "1960-01-09T10:00:00+00:00"
+  }
+]
