@@ -6,7 +6,7 @@
 ## Run
 
 ### Production
-`node src/index.js`
+`npm start`
 
 ### Development
-`./node_modules/.bin/nodemon src/index.js`
+`npm start:dev`
