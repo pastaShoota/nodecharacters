@@ -4,11 +4,13 @@ const errorMiddleware = require('./common/error/error.middleware');
 
 const app = express();
 
+app.use(express.json());
 app.use((req, res, next) => {
   console.log('Incoming request on path ' + req.path + ' with parameters ' + JSON.stringify(req.query));
   next();
-})
+});
 app.use(appRouter);
+
 app.use(errorMiddleware);
 
 module.exports = app;

@@ -1,4 +1,4 @@
-const repository = require('./character.repository');
+const repository = require('./character.repository.remote');
 const mapper = require('./character.mapper');
 
 const find = (req, res, next) => {
@@ -16,15 +16,28 @@ const get = (req, res, next) => {
 };
 
 const create = (req, res, next) => {
-  res.status(501).json({ details: 'Feature not available yet' });
+  let entity = mapper.dtoToEntity(req.body);
+  repository.post(entity)
+      .then(responseData => {
+        res.status(201)
+        .json(responseData);
+      })
+      .catch(next);
 };
 
 const update = (req, res, next) => {
-  res.status(501).json({ details: 'Feature not available yet' });
+  let entity = mapper.dtoToEntityWithId(req.body, req.params.id);
+  repository.put(entity)
+      .then(responseData => {
+          res.send("Updated");
+      })
 };
 
 const remove = (req, res, next) => {
-  res.status(501).json({ details: 'Feature not available yet' });
+  repository.del(req.params.id)
+      .then(response => {
+          res.send('Removed')
+      });
 };
 
 module.exports = {
