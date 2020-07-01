@@ -1,8 +1,6 @@
 console.log('TP-4');
 
-const characterRepository = require('./app/character/character.repository');
-const characterMapper = require('./app/character/character.mapper');
+const app = require('./app/app');
+const PORT = 3000;
 
-characterRepository.find()
-  .then(characters => characters.map(character => characterMapper.entityToDto(character)))
-  .then(characters => characters.forEach(data => console.log(data)));
+app.listen(PORT, () => console.log('Server running on port ' + PORT));
