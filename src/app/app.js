@@ -1,5 +1,6 @@
 const express = require('express');
 const appRouter = require('./app.router');
+const errorMiddleware = require('./common/error/error.middleware');
 
 const app = express();
 
@@ -8,5 +9,6 @@ app.use((req, res, next) => {
   next();
 })
 app.use(appRouter);
+app.use(errorMiddleware);
 
 module.exports = app;
