@@ -15,13 +15,14 @@ module.exports = {
     Promise.resolve(req)
       .then(req => extractToken(req))
       .then(token => service.verify(token))
-      .then(() => next())
+      .then(user => {
+        req.user = user;
+        next();
+      })
       .catch(next);
   },
   isAdminMiddleware: (req, res, next) => {
-    Promise.resolve(req)
-      .then(req => extractToken(req))
-      .then(token => service.verify(token))
+    Promise.resolve(req.user)
       .then(user => moment().diff(moment(user.birthDate), 'year') > 60 ? next() : Promise.reject(new AppError(AppErrorType.AUTHORIZATION_ERROR)))
       .catch(next);
   }
