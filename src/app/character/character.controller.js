@@ -16,15 +16,29 @@ const get = (req, res, next) => {
 };
 
 const create = (req, res, next) => {
-  res.status(501).json({ details: 'Feature not available yet' });
+  Promise.resolve(req.body)
+    .then(character => mapper.dtoToEntity(character))
+    .then(character => repository.create(character))
+    .then(character => res.status(201).json(character))
+    .catch(next);
 };
 
 const update = (req, res, next) => {
-  res.status(501).json({ details: 'Feature not available yet' });
+  Promise.resolve(req.body)
+    .then(character => {
+      character.id = req.params.id;
+      return character
+    })
+    .then(character => mapper.dtoToEntity(character))
+    .then(character => repository.update(character))
+    .then(character => res.json(character))
+    .catch(next);
 };
 
 const remove = (req, res, next) => {
-  res.status(501).json({ details: 'Feature not available yet' });
+  repository.remove(req.params.id)
+    .then(() => res.sendStatus(204))
+    .catch(next);
 };
 
 module.exports = {
