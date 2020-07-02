@@ -36,9 +36,9 @@ const remove = id => axios.delete(resourceBaseUrl + '/' + id)
   .catch(error => Promise.reject(new appError.AppError(appError.AppErrorType.RESOURCE_NOT_FOUND, error)));
 
 module.exports = {
-  find: find,
-  get: get,
-  create: create,
-  update: update,
-  remove: remove
+  find,
+  get,
+  create,
+  update,
+  remove
 };
