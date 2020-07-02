@@ -1,10 +1,11 @@
 const appError = require('../common/error/app-error');
 const repositoryUtil = require('../common/repository.util');
 const resourceBaseUrl = repositoryUtil.url + '/characters';
+const configService = require('../common/config/config.service');
 
 const axios = require('axios').default;
 
-const find = () => axios.get(resourceBaseUrl + '?size=100')
+const find = () => axios.get(`${resourceBaseUrl}?size=${configService.getConfig().repository.defaultSize || 100}`)
   .then(response => response.data);
 
 const get = id => axios.get(resourceBaseUrl + '/' + id)

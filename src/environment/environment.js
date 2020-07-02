@@ -1,5 +1,6 @@
 module.exports = {
   repository: {
-    url: 'https://repository-staging.herokuapp.com/api'
+    url: 'https://repository-staging.herokuapp.com/api',
+    defaultSize: 100
   }
 };
