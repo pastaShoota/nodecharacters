@@ -1,5 +1,6 @@
 const express = require('express');
 const helmet = require('helmet');
+const compression = require('compression');
 const appRouter = require('./app.router');
 const errorMiddleware = require('./common/error/error.middleware');
 
@@ -11,6 +12,7 @@ app
     next();
   })
   .use(helmet())
+  .use(compression())
   .use(express.json())
   .use(appRouter)
   .use(errorMiddleware);
