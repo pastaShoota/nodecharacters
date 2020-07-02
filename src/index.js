@@ -1,6 +1,8 @@
-console.log('TP-10');
+const { logger } = require('./app/common/logger.util');
+
+logger.info('TP-10');
 
 const app = require('./app/app');
 const PORT = 3000;
 
-app.listen(PORT, () => console.log('Server running on port ' + PORT));
+app.listen(PORT, () => logger.info('Server running on port ' + PORT));
