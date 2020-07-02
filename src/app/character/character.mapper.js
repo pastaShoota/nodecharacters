@@ -2,8 +2,9 @@ const moment = require('moment');
 const Character = require('./character.dto');
 
 const entityToDto = entity => {
-    const age = moment().diff(moment(entity.birthDate), 'year');
-    return new Character(entity.id, entity.firstName, entity.lastName, age);
+    const entity_ = entity || {};
+    const age = entity_.birthDate ? moment().diff(moment(entity.birthDate), 'year') : 0;
+    return new Character(entity_.id, entity_.firstName, entity_.lastName, age);
   };
 
 const dtoToEntity = dto => {
