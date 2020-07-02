@@ -1,4 +1,5 @@
 const { createLogger, format, transports } = require('winston');
+const { logger: winstonLogger } = require('express-winston');
 
 const configService = require('./config/config.service');
 
@@ -14,6 +15,12 @@ const logger = createLogger({
   ]
 });
 
+const expressLogger = winstonLogger({
+  winstonInstance: logger,
+  msg: 'HTTP {{res.statusCode}} {{req.method}} {{res.responseTime}}ms {{req.url}}'
+});
+
 module.exports = {
-  logger
+  logger,
+  expressLogger
 };
