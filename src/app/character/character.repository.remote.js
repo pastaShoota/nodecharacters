@@ -1,8 +1,9 @@
 
 const axios = require('axios');
 const {AppError, AppErrorType} = require('../common/error/app-error');
+const repoUtil = require('../common/repository.util');
 
-const REPO_URL = 'http://repository-staging.herokuapp.com/api/characters';
+const REPO_URL = repoUtil.url+'/characters';
 
 const find = () => Promise.all(range(10)
     .map(index => REPO_URL + '?page=' + index)
@@ -13,8 +14,12 @@ const find = () => Promise.all(range(10)
     );
 
 const get = id => find()
-    .then(characters => characters.find(character => character.id === id))
-    .then(character => character || Promise.reject(new AppError(AppErrorType.RESOURCE_NOT_FOUND)));
+    .then(characters => {
+        return characters.find(character => character.id === id);
+    })
+    .then(character => {
+        return character || Promise.reject(new AppError(AppErrorType.RESOURCE_NOT_FOUND));
+    });
 
 const post = characterJson => {
     return axios.post(REPO_URL, characterJson)

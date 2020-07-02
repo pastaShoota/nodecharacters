@@ -6,6 +6,8 @@ class AppErrorType {
   }
 }
 AppErrorType.RESOURCE_NOT_FOUND = new AppErrorType('RESOURCE_NOT_FOUND', 404, 'The requested resource was not found');
+AppErrorType.UNAUTHENTICATED = new AppErrorType('UNAUTHENTICATED', 401, 'No authentication');
+AppErrorType.WRONG_AUTHENT = new AppErrorType('WRONG_AUTHENT', 401, 'No authentication');
 AppErrorType.INTERNAL_ERROR = new AppErrorType('INTERNAL_ERROR', 500, 'An error has occurred while processing the request');
 
 
