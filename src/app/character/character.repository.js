@@ -1,23 +1,23 @@
-const appError = require('../common/error/app-error');
-const repositoryUtil = require('../common/repository.util');
-const resourceBaseUrl = repositoryUtil.url + '/characters';
-const configService = require('../common/config/config.service');
+const { default: axios } = require('axios');
+const { AppError, AppErrorType } = require('../common/error/app-error');
+const { url, errorCodes } = require('../common/repository.util');
+const { getConfig } = require('../common/config/config.service');
 
-const axios = require('axios').default;
+const resourceBaseUrl = url + '/characters';
 
-const find = () => axios.get(`${resourceBaseUrl}?size=${configService.getConfig().repository.defaultSize || 100}`)
+const find = () => axios.get(`${resourceBaseUrl}?size=${getConfig().repository.defaultSize || 100}`)
   .then(response => response.data);
 
 const get = id => axios.get(resourceBaseUrl + '/' + id)
   .then(response => response.data)
-  .catch(error => Promise.reject(new appError.AppError(appError.AppErrorType.RESOURCE_NOT_FOUND, error)));
+  .catch(error => Promise.reject(new AppError(AppErrorType.RESOURCE_NOT_FOUND, error)));
 
 const create = entity => {
   return axios.post(resourceBaseUrl, entity)
     .then(response => {
       return response.data;
     })
-    .catch(() => Promise.reject(new appError.AppError(appError.AppErrorType.REMOTE_SERVER_ERROR)));
+    .catch(() => Promise.reject(new AppError(AppErrorType.REMOTE_SERVER_ERROR)));
 }
 
 const update = entity => axios.put(resourceBaseUrl + '/' + entity.id, entity)
@@ -25,15 +25,15 @@ const update = entity => axios.put(resourceBaseUrl + '/' + entity.id, entity)
   .catch(error => {
     const errorCode = error && error.response && error.response.data && error.response.data.code;
     switch (errorCode) {
-      case repositoryUtil.errorCodes.RESOURCE_NOT_FOUND:
-        return Promise.reject(new appError.AppError(appError.AppErrorType.RESOURCE_NOT_FOUND));
+      case errorCodes.RESOURCE_NOT_FOUND:
+        return Promise.reject(new AppError(AppErrorType.RESOURCE_NOT_FOUND));
       default:
-        return Promise.reject(new appError.AppError(appError.AppErrorType.REMOTE_SERVER_ERROR));
+        return Promise.reject(new AppError(AppErrorType.REMOTE_SERVER_ERROR));
     }
   });
 
 const remove = id => axios.delete(resourceBaseUrl + '/' + id)
-  .catch(error => Promise.reject(new appError.AppError(appError.AppErrorType.RESOURCE_NOT_FOUND, error)));
+  .catch(error => Promise.reject(new AppError(AppErrorType.RESOURCE_NOT_FOUND, error)));
 
 module.exports = {
   find,

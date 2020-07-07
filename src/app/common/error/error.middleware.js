@@ -1,19 +1,20 @@
-const appError = require('./app-error');
+const { AppError, AppErrorType } = require('./app-error');
+const { logger } = require('../logger.util');
 
 const errorMiddleware = (error, req, res, next) => {
-  if (error instanceof appError.AppError) {
+  if (error instanceof AppError) {
     res.status(error.type.httpCode).json({
       code: error.type.code,
       message: error.publicMessage
     });
-    console.error(error.message);
+    logger.error(error.message);
   } else {
-    const errorType = appError.AppErrorType.INTERNAL_ERROR;
+    const errorType = AppErrorType.INTERNAL_ERROR;
     res.status(errorType.httpCode).json({
       code: errorType.code,
       message: errorType.description
     });
-    console.error(error);
+    logger.error(error);
   }
 };
 

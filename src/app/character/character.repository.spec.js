@@ -1,5 +1,5 @@
 const { expect, spy } = require('chai');
-const axios = require('axios');
+const { default: axios } = require('axios');
 
 const repository = require('./character.repository');
 
@@ -7,11 +7,11 @@ describe('character repository', () => {
 
   describe('find', () => {
     beforeEach(() => {
-      spy.on(axios.default, 'get', () => Promise.resolve({ data: [{}, {}, {}] }));
+      spy.on(axios, 'get', () => Promise.resolve({ data: [{}, {}, {}] }));
     });
 
     afterEach(() => {
-      spy.restore(axios.default, 'get');
+      spy.restore(axios, 'get');
     })
 
     it('should return a Promise', () => {
@@ -33,7 +33,7 @@ describe('character repository', () => {
     it('should call one axios.get', done => {
       repository.find()
         .then(() => {
-          expect(axios.default.get).to.have.been.called.once;
+          expect(axios.get).to.have.been.called.once;
           done();
         })
         .catch(done);
@@ -42,11 +42,11 @@ describe('character repository', () => {
 
   describe('get', () => {
     beforeEach(() => {
-      spy.on(axios.default, 'get', () => Promise.resolve({ data: {} }));
+      spy.on(axios, 'get', () => Promise.resolve({ data: {} }));
     });
 
     afterEach(() => {
-      spy.restore(axios.default, 'get');
+      spy.restore(axios, 'get');
     })
 
     it('should return a Promise', () => {
@@ -67,7 +67,7 @@ describe('character repository', () => {
     it('should call one axios.get', done => {
       repository.get()
         .then(() => {
-          expect(axios.default.get).to.have.been.called.once;
+          expect(axios.get).to.have.been.called.once;
           done();
         })
         .catch(done);

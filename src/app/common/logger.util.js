@@ -1,10 +1,10 @@
 const { createLogger, format, transports } = require('winston');
 const { logger: winstonLogger } = require('express-winston');
 
-const configService = require('./config/config.service');
+const { getConfig } = require('./config/config.service');
 
 const logger = createLogger({
-  level: configService.getConfig().logger.level,
+  level: getConfig().logger.level,
   format: format.combine(
     format.colorize(),
     format.timestamp(),

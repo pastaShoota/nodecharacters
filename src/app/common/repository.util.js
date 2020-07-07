@@ -1,6 +1,6 @@
-const configService = require('./config/config.service') ;
+const { getConfig } = require('./config/config.service') ;
 
-exports.url = configService.getConfig().repository.url;
+exports.url = getConfig().repository.url;
 
 exports.errorCodes = {
   DTO_INVALID_FORMAT: 'DTO_INVALID_FORMAT',
