@@ -1,21 +1,22 @@
+import { NextFunction, Request, Response } from 'express';
 import * as repository from './character.repository';
 import * as mapper from './character.mapper';
 
-export const find = (req, res, next) => {
+export const find = (req: Request, res: Response, next: NextFunction) => {
   repository.find()
     .then(characters => characters.map(character => mapper.entityToDto(character)))
     .then(characters => res.json(characters))
     .catch(next);
 };
 
-export const get = (req, res, next) => {
+export const get = (req: Request, res: Response, next: NextFunction) => {
   repository.get(req.params.id)
     .then(character => mapper.entityToDto(character))
     .then(character => res.json(character))
     .catch(next);
 };
 
-export const create = (req, res, next) => {
+export const create = (req: Request, res: Response, next: NextFunction) => {
   Promise.resolve(req.body)
     .then(character => mapper.dtoToEntity(character))
     .then(character => repository.create(character))
@@ -23,7 +24,7 @@ export const create = (req, res, next) => {
     .catch(next);
 };
 
-export const update = (req, res, next) => {
+export const update = (req: Request, res: Response, next: NextFunction) => {
   Promise.resolve(req.body)
     .then(character => {
       character.id = req.params.id;
@@ -35,7 +36,7 @@ export const update = (req, res, next) => {
     .catch(next);
 };
 
-export const remove = (req, res, next) => {
+export const remove = (req: Request, res: Response, next: NextFunction) => {
   repository.remove(req.params.id)
     .then(() => res.sendStatus(204))
     .catch(next);

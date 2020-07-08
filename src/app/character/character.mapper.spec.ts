@@ -1,11 +1,11 @@
 import { expect } from 'chai';
 import * as mapper from './character.mapper';
-import Character from './character.dto';
+import { CharacterDto, ICharacterEntity } from './character.model';
 
 describe('character mapper', () => {
   describe('entity to dto', () => {
     it('should return an instance of Character', () => {
-      const entity = {
+      const entity: ICharacterEntity = {
         firstName: 'John',
         lastName: 'Doe',
         birthDate: '1990-01-01T00:00:00.000Z'
@@ -13,11 +13,11 @@ describe('character mapper', () => {
 
       const dto = mapper.entityToDto(entity);
 
-      expect(dto).to.be.instanceOf(Character);
+      expect(dto).to.be.instanceOf(CharacterDto);
     });
 
     it('should return an object with mapped properties', () => {
-      const entity = {
+      const entity: ICharacterEntity = {
         firstName: 'John',
         lastName: 'Doe',
         birthDate: '1990-01-01T00:00:00.000Z'
@@ -43,7 +43,7 @@ describe('character mapper', () => {
 
   describe('dto to entity', () => {
     it('should return an instance of Object', () => {
-      const dto = new Character('x', 'John', 'Doe', 30);
+      const dto = new CharacterDto('x', 'John', 'Doe', 30);
 
       const entity = mapper.dtoToEntity(dto);
 
@@ -51,7 +51,7 @@ describe('character mapper', () => {
     });
 
     it('should return an object with mapped properties', () => {
-      const dto = new Character('x', 'John', 'Doe', 30);
+      const dto = new CharacterDto('x', 'John', 'Doe', 30);
 
       const entity = mapper.dtoToEntity(dto);
 

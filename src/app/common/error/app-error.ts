@@ -19,7 +19,7 @@ export class AppErrorType {
 export class AppError extends Error {
   constructor(
     public type: AppErrorType,
-    message?: string,
+    message?: string | Object,
     public publicMessage?: string) {
     super(message || type && type.description);
     this.type = type;
