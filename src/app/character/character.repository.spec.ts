@@ -1,5 +1,5 @@
-const { expect, spy } = require('chai');
-const { default: axios } = require('axios');
+import { expect, spy } from 'chai';
+import { default as axios } from 'axios';
 
 const repository = require('./character.repository');
 

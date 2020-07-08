@@ -1,6 +1,6 @@
-const { expect } = require('chai');
-const mapper = require('./character.mapper');
-const Character = require('./character.dto');
+import { expect } from 'chai';
+import * as mapper from './character.mapper';
+import Character from './character.dto';
 
 describe('character mapper', () => {
   describe('entity to dto', () => {
