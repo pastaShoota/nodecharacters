@@ -1,7 +1,7 @@
-const { AppError, AppErrorType } = require('./app-error');
-const { logger } = require('../logger.util');
+import { AppError, AppErrorType } from './app-error';
+import { logger } from '../logger.util';
 
-const errorMiddleware = (error, req, res, next) => {
+export const errorMiddleware = (error, req, res, next) => {
   if (error instanceof AppError) {
     res.status(error.type.httpCode).json({
       code: error.type.code,
@@ -17,5 +17,3 @@ const errorMiddleware = (error, req, res, next) => {
     logger.error(error);
   }
 };
-
-module.exports = errorMiddleware;

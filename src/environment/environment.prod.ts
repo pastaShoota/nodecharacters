@@ -1,4 +1,4 @@
-module.exports = {
+export default {
   repository: {
     url: 'https://repository-prod.herokuapp.com/api'
   },

@@ -1,6 +1,6 @@
-const express = require('express');
-const controller = require('./character.controller');
-const { authMiddleware, isAdminMiddleware } = require('../auth/auth.middleware');
+import * as express from 'express';
+import * as controller from './character.controller';
+import { authMiddleware, isAdminMiddleware } from '../auth/auth.middleware';
 
 const router = express.Router();
 
@@ -11,4 +11,4 @@ router
   .put('/:id', authMiddleware, (req, res, next) => controller.update(req, res, next))
   .delete('/:id', authMiddleware, isAdminMiddleware, (req, res, next) => controller.remove(req, res, next));
 
-module.exports = router;
+export default router;

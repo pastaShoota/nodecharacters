@@ -1,9 +1,9 @@
-const { createLogger, format, transports } = require('winston');
-const { logger: winstonLogger } = require('express-winston');
+import { createLogger, format, transports } from 'winston';
+import { logger as winstonLogger } from 'express-winston';
 
-const { getConfig } = require('./config/config.service');
+import { getConfig } from './config/config.service';
 
-const logger = createLogger({
+export const logger = createLogger({
   level: getConfig().logger.level,
   format: format.combine(
     format.colorize(),
@@ -15,12 +15,7 @@ const logger = createLogger({
   ]
 });
 
-const expressLogger = winstonLogger({
+export const expressLogger = winstonLogger({
   winstonInstance: logger,
   msg: 'HTTP {{res.statusCode}} {{req.method}} {{res.responseTime}}ms {{req.url}}'
 });
-
-module.exports = {
-  logger,
-  expressLogger
-};

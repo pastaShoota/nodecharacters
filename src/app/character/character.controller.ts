@@ -1,21 +1,21 @@
-const repository = require('./character.repository');
-const mapper = require('./character.mapper');
+import * as repository from './character.repository';
+import * as mapper from './character.mapper';
 
-const find = (req, res, next) => {
+export const find = (req, res, next) => {
   repository.find()
     .then(characters => characters.map(character => mapper.entityToDto(character)))
     .then(characters => res.json(characters))
     .catch(next);
 };
 
-const get = (req, res, next) => {
+export const get = (req, res, next) => {
   repository.get(req.params.id)
     .then(character => mapper.entityToDto(character))
     .then(character => res.json(character))
     .catch(next);
 };
 
-const create = (req, res, next) => {
+export const create = (req, res, next) => {
   Promise.resolve(req.body)
     .then(character => mapper.dtoToEntity(character))
     .then(character => repository.create(character))
@@ -23,7 +23,7 @@ const create = (req, res, next) => {
     .catch(next);
 };
 
-const update = (req, res, next) => {
+export const update = (req, res, next) => {
   Promise.resolve(req.body)
     .then(character => {
       character.id = req.params.id;
@@ -35,16 +35,8 @@ const update = (req, res, next) => {
     .catch(next);
 };
 
-const remove = (req, res, next) => {
+export const remove = (req, res, next) => {
   repository.remove(req.params.id)
     .then(() => res.sendStatus(204))
     .catch(next);
-};
-
-module.exports = {
-  find: find,
-  get: get,
-  create: create,
-  update: update,
-  remove: remove
 };

@@ -1,4 +1,4 @@
-module.exports = {
+export default {
   repository: {
     url: 'https://repository-staging.herokuapp.com/api',
     defaultSize: 100
