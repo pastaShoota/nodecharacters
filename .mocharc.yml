@@ -1,4 +1,4 @@
 require:
   - 'ts-node/register'
-  - 'src/test/mocha.config'
+  - 'src/test/mocha.config.ts'
 spec: src/**/*.spec.ts
